@@ -1,0 +1,35 @@
+
+spring:
+  kafka:
+    bootstrap-servers: **************.aws.confluent.cloud:9092
+    properties:
+      schema:
+        registry:
+          url: https***************.aws.confluent.cloud
+      basic:
+        auth:
+          credentials:
+            source: USER_INFO
+          user:
+            info: ****************:***********************
+      sasl:
+        jaas:
+          config: org.apache.kafka.common.security.plain.PlainLoginModule
+            required username="*******" password="*************";
+        mechanism: PLAIN
+      security:
+        protocol: SASL_SSL
+      ssl:
+        endpoint:
+          identification:
+            algorithm: https
+    consumer:
+      keyDeserializer: org.apache.kafka.common.serialization.StringDeserializer
+      valueDeserializer: org.apache.kafka.common.serialization.LongDeserializer
+      group-id: adaptavist_1
+    producer:
+      keySerializer: org.apache.kafka.common.serialization.StringSerializer
+      valueSerializer: org.apache.kafka.common.serialization.StringSerializer
+    streams:
+      application-id: my-wordCount-test
+      replication-factor: 3
